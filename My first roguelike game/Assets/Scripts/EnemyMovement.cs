@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
 {
     public float speed;
     public float rotateSpeed;
+    public int damage;
     public int lives;
 
     private Rigidbody2D rb;

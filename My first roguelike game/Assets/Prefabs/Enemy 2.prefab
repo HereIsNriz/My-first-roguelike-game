@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   rotateSpeed: 1000
+  damage: 1
   lives: 1
 --- !u!60 &7824750861579596409
 PolygonCollider2D:

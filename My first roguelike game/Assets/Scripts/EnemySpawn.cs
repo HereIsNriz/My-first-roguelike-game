@@ -6,6 +6,7 @@ public class EnemySpawn : MonoBehaviour
 {
     public GameObject[] enemy;
 
+    private int enemyToSpawn = 3;
     private float xySpawnLocation = 50.0f;
     private float spawnDelay = 2.0f;
     private float enemyTimeDelayFirst = 1.0f;
@@ -30,7 +31,10 @@ public class EnemySpawn : MonoBehaviour
         int enemyIndex = Random.Range(0, enemy.Length);
         Vector2 enemySpawnLoc = new Vector2(Random.Range(-xySpawnLocation, xySpawnLocation), Random.Range(-xySpawnLocation, xySpawnLocation));
 
-        Instantiate(enemy[enemyIndex], enemySpawnLoc, transform.rotation);
+        for (int i = 0; i < enemyToSpawn; i++)
+        {
+            Instantiate(enemy[Random.Range(0, enemy.Length)], new Vector2(Random.Range(-xySpawnLocation, xySpawnLocation), Random.Range(-xySpawnLocation, xySpawnLocation)), transform.rotation);
+        }
 
         Invoke("RandomEnemySpawnLocation", Random.Range(enemyTimeDelayFirst, enemyTimeDelaySecond));
     }

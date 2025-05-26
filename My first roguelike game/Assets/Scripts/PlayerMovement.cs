@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool notDamaged = true;
     public float speed;
     public int lives;
     public GameObject bullet;
-    public Transform bulletShoot;
+    public GameObject bulletShoot;
 
     private Rigidbody2D rb;
     private float horizontalInput;
@@ -36,9 +37,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && notDamaged)
         {
             lives--;
+            notDamaged = false;
             StartCoroutine(livesCountdownRoutine());
         }
     }
@@ -46,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator livesCountdownRoutine()
     {
         yield return new WaitForSeconds(delayAfterDamaged);
+        notDamaged = true;
     }
 
     // Move the player move based on WASD and arrow keys input
@@ -54,8 +57,11 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector2.right * speed * Time.deltaTime * horizontalInput);
-        transform.Translate(Vector2.up * speed * Time.deltaTime * verticalInput);
+        Vector2 moveAround = new Vector2(horizontalInput, verticalInput);
+
+        Vector2 movePlayer = moveAround.normalized;
+
+        rb.velocity = movePlayer * speed;
     }
 
     // Make the player can shoot a bullet based on left click input
@@ -63,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Instantiate(bullet, bulletShoot.position, transform.rotation);
+            Instantiate(bullet, bulletShoot.transform.position, transform.rotation);
         }
     }
 }

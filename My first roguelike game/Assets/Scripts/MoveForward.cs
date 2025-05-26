@@ -5,17 +5,20 @@ using UnityEngine;
 public class MoveForward : MonoBehaviour
 {
     public float speed;
+    public int damage;
+
+    private Rigidbody2D bulletRb;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        bulletRb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.Translate(Vector2.up *  speed * Time.deltaTime);
+        bulletRb.velocity = Vector2.up * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
