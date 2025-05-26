@@ -1,0 +1,53 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody2D))]
+public class EnemyMovement : MonoBehaviour
+{
+    public float speed;
+    public float rotateSpeed;
+    public int lives;
+
+    private Rigidbody2D rb;
+    private GameObject player;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player");
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        if (lives <= 0)
+        {
+            lives = 0;
+            Destroy(gameObject);
+        }
+    }
+
+    // FixedUpdate for physic
+    void FixedUpdate()
+    {
+        Vector2 direction = (Vector2)player.transform.position - (Vector2)rb.transform.position;
+
+        direction.Normalize();
+
+        float rotateAmount = Vector3.Cross(direction, transform.up).z;
+
+        rb.angularVelocity = -rotateAmount * rotateSpeed;
+
+        rb.velocity = transform.up * speed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            lives--;
+        }
+    }
+}
