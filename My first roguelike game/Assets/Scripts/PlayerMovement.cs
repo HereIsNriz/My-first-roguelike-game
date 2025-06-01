@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     public GameObject bulletShoot;
 
     private Rigidbody2D rb;
-    private int enemyDamage;
     private float horizontalInput;
     private float verticalInput;
     private float delayAfterDamaged = 3;
@@ -20,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {  
         rb = GetComponent<Rigidbody2D>();
-        enemyDamage = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyMovement>().damage;
     }
 
     // Update is called once per frame
@@ -39,9 +37,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        EnemyMovement enemy = collision.gameObject.GetComponent<EnemyMovement>();
+
         if (collision.gameObject.CompareTag("Enemy") && notDamaged)
         {
-            lives -= enemyDamage;
+            lives -= enemy.damage;
             notDamaged = false;
             StartCoroutine(livesCountdownRoutine());
         }
