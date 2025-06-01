@@ -46,9 +46,11 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        MoveForward bullet = collision.gameObject.GetComponent<MoveForward>();
+
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            lives--;
+            lives -= bullet.damage;
         }
     }
 }
