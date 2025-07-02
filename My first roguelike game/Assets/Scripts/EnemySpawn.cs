@@ -28,12 +28,13 @@ public class EnemySpawn : MonoBehaviour
     void RandomEnemySpawnLocation()
     {
         // Randomly spwan enemy from everywhere
-        int enemyIndex = Random.Range(0, enemy.Length);
-        Vector2 enemySpawnLoc = new Vector2(Random.Range(-xySpawnLocation, xySpawnLocation), Random.Range(-xySpawnLocation, xySpawnLocation));
 
         for (int i = 0; i < enemyToSpawn; i++)
         {
-            Instantiate(enemy[Random.Range(0, enemy.Length)], new Vector2(Random.Range(-xySpawnLocation, xySpawnLocation), Random.Range(-xySpawnLocation, xySpawnLocation)), transform.rotation);
+            int enemyIndex = Random.Range(0, enemy.Length);
+            Vector2 enemySpawnLoc = new Vector2(Random.Range(-xySpawnLocation, xySpawnLocation), Random.Range(-xySpawnLocation, xySpawnLocation));
+
+            Instantiate(enemy[enemyIndex], enemySpawnLoc, enemy[enemyIndex].gameObject.transform.rotation);
         }
 
         Invoke("RandomEnemySpawnLocation", Random.Range(enemyTimeDelayFirst, enemyTimeDelaySecond));
