@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private float delayAfterDamaged = 3;
+    private float playerRotation;
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +25,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MovePlayer();
-
         PlayerShoot();
 
         if (lives <= 0)
@@ -33,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
             lives = 0;
             Debug.Log("Game Over!");
         }
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -64,6 +68,12 @@ public class PlayerMovement : MonoBehaviour
         Vector2 movePlayer = moveAround.normalized;
 
         rb.velocity = movePlayer * speed;
+
+        if (movePlayer != Vector2.zero)
+        {
+            playerRotation = Mathf.Atan2(movePlayer.x, movePlayer.y) * Mathf.Rad2Deg * -1;
+            transform.rotation = Quaternion.Euler(0, 0, playerRotation);
+        }
     }
 
     // Make the player can shoot a bullet based on left click input

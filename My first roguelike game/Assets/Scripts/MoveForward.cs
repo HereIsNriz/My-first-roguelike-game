@@ -18,7 +18,7 @@ public class MoveForward : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        bulletRb.velocity = Vector2.up * speed;
+        bulletRb.velocity = transform.up * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
