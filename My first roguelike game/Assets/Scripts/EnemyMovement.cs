@@ -46,7 +46,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        MoveForward bullet = collision.gameObject.GetComponent<MoveForward>();
+        BulletController bullet = collision.gameObject.GetComponent<BulletController>();
 
         if (collision.gameObject.CompareTag("Bullet"))
         {
