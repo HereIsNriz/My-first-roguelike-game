@@ -1680,10 +1680,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
-  - {fileID: 7816702407431924570, guid: e1868e17379e3504b8528bd287a95b15, type: 3}
-  - {fileID: 1344631770620161297, guid: b51f2ca9e3297e04496d0e66f5dcbaba, type: 3}
-  - {fileID: 6961301827307034288, guid: 81ec4130af8dadf40a62b111241bf339, type: 3}
-  - {fileID: 1932662632762328921, guid: 8a78762b0013bb74d960e8f654af2c46, type: 3}
+  - {fileID: 3362570225832294884, guid: 81ec4130af8dadf40a62b111241bf339, type: 3}
+  - {fileID: 8967670418545086024, guid: d86ec4ccb21ac984e821e4e463651a25, type: 3}
+  - {fileID: 171626667928972641, guid: 28c086219140e0d44946b7768a58cf78, type: 3}
+  numOfObstacles: 30
+  xySpawnLocation: 50
+  minDistanceBetweenObstacles: 10
 --- !u!4 &2092419389
 Transform:
   m_ObjectHideFlags: 0
