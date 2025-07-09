@@ -46,7 +46,7 @@ public class ObstacleSpawn : MonoBehaviour
                     Collider2D[] hitColliders = Physics2D.OverlapCircleAll(obstacleLocation, minDistanceBetweenObstacles / 2f);
                     foreach (Collider2D hitCollider in hitColliders)
                     {
-                        if (hitCollider.CompareTag("Obstacle") || hitCollider.CompareTag("Wall"))
+                        if (hitCollider.CompareTag("Obstacle") || hitCollider.CompareTag("Wall") || hitCollider.CompareTag("Player"))
                         {
                             locationFound = false;
                             break;
