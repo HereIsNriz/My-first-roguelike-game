@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject bullet;
     public GameObject bulletShoot;
 
+    private GameManager gameManager;
     private Rigidbody2D rb;
     private float horizontalInput;
     private float verticalInput;
@@ -20,23 +21,33 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {  
         rb = GetComponent<Rigidbody2D>();
+
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerShoot();
+        if (gameManager.isGameRunning)
+        {
+            PlayerShoot();
+        }
 
         if (lives <= 0)
         {
             lives = 0;
-            Debug.Log("Game Over!");
+            speed = 0;
+            rb.velocity = Vector3.zero;
+            gameManager.GameOver();
         }
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (gameManager.isGameRunning)
+        {
+            MovePlayer();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

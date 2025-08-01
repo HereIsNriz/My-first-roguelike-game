@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     public int damage;
     public int lives;
 
+    private GameManager gameManager;
     private Rigidbody2D rb;
     private GameObject player;
 
@@ -18,6 +19,7 @@ public class EnemyMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,13 @@ public class EnemyMovement : MonoBehaviour
         if (lives <= 0)
         {
             lives = 0;
+            speed = 0;
+            rotateSpeed = 0;
+            Destroy(gameObject);
+        }
+
+        if (!gameManager.isGameRunning)
+        {
             Destroy(gameObject);
         }
     }
@@ -33,15 +42,18 @@ public class EnemyMovement : MonoBehaviour
     // FixedUpdate for physic
     void FixedUpdate()
     {
-        Vector2 direction = (Vector2)player.transform.position - (Vector2)rb.transform.position;
+        if (gameManager.isGameRunning)
+        {
+            Vector2 direction = (Vector2)player.transform.position - (Vector2)rb.transform.position;
 
-        direction.Normalize();
+            direction.Normalize();
 
-        float rotateAmount = Vector3.Cross(direction, transform.up).z;
+            float rotateAmount = Vector3.Cross(direction, transform.up).z;
 
-        rb.angularVelocity = -rotateAmount * rotateSpeed;
+            rb.angularVelocity = -rotateAmount * rotateSpeed;
 
-        rb.velocity = transform.up * speed;
+            rb.velocity = transform.up * speed;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
