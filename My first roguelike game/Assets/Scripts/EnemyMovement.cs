@@ -27,9 +27,6 @@ public class EnemyMovement : MonoBehaviour
     {
         if (lives <= 0)
         {
-            lives = 0;
-            speed = 0;
-            rotateSpeed = 0;
             Destroy(gameObject);
         }
 
