@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject statsPanel;
+    [SerializeField] private TextMeshProUGUI enemyKilledText;
 
     // Start is called before the first frame update
     void Start()
