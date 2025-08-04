@@ -1,28 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public bool notDamaged = true;
+    public bool notDamaged;
     public float speed;
-    public int lives;
+    public int maxLives;
     public GameObject bullet;
     public GameObject bulletShoot;
 
+    [SerializeField] private Slider playerHealthBar;
     private GameManager gameManager;
     private Rigidbody2D rb;
     private float horizontalInput;
     private float verticalInput;
     private float delayAfterDamaged = 3;
     private float playerRotation;
+    private int currentLives;
 
     // Start is called before the first frame update
     void Start()
-    {  
-        rb = GetComponent<Rigidbody2D>();
+    {
+        notDamaged = true;
+        currentLives = maxLives;
 
+        rb = GetComponent<Rigidbody2D>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
+        playerHealthBar.maxValue = maxLives;
+        playerHealthBar.value = currentLives;
+        playerHealthBar.fillRect.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -33,12 +42,13 @@ public class PlayerMovement : MonoBehaviour
             PlayerShoot();
         }
 
-        if (lives <= 0)
+        if (currentLives <= 0)
         {
-            lives = 0;
+            currentLives = 0;
             speed = 0;
             rb.velocity = Vector3.zero;
             gameManager.GameOver();
+            playerHealthBar.gameObject.SetActive(false);
         }
     }
 
@@ -56,7 +66,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy") && notDamaged)
         {
-            lives -= enemy.damage;
+            currentLives -= enemy.damage;
+            playerHealthBar.value = currentLives;
+
             notDamaged = false;
             StartCoroutine(livesCountdownRoutine());
         }
