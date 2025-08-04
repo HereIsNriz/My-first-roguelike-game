@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyMovement : MonoBehaviour
@@ -8,24 +9,32 @@ public class EnemyMovement : MonoBehaviour
     public float speed;
     public float rotateSpeed;
     public int damage;
-    public int lives;
+    public int maxLives;
 
+    [SerializeField] private Slider enemyHealthBar;
     private GameManager gameManager;
     private Rigidbody2D rb;
     private GameObject player;
+    private int currentLives;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentLives = maxLives;
+
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
+        enemyHealthBar.maxValue = maxLives;
+        enemyHealthBar.value = currentLives;
+        enemyHealthBar.fillRect.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (lives <= 0)
+        if (currentLives <= 0)
         {
             Destroy(gameObject);
         }
@@ -59,7 +68,8 @@ public class EnemyMovement : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            lives -= bullet.damage;
+            currentLives -= bullet.damage;
+            enemyHealthBar.value = currentLives;
         }
     }
 }
