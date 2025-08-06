@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject statsPanel;
     [SerializeField] private TextMeshProUGUI enemyKilledText;
+    // playTimeText
+    // scoreText
     [SerializeField] private TextMeshProUGUI countdownText;    
 
     // Start is called before the first frame update
@@ -20,7 +22,7 @@ public class GameManager : MonoBehaviour
     {
         isGameRunning = true;
 
-        timeAmount = 300.0f;
+        timeAmount = 301.0f;
     }
 
     // Update is called once per frame
@@ -30,7 +32,7 @@ public class GameManager : MonoBehaviour
 
         if (timeAmount <= 0)
         {
-            GameOver();
+            // GameWin();
         }
     }
 
