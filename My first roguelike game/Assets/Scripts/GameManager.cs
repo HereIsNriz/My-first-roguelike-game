@@ -8,21 +8,47 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public bool isGameRunning;
+    public float timeAmount;
 
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject statsPanel;
     [SerializeField] private TextMeshProUGUI enemyKilledText;
+    [SerializeField] private TextMeshProUGUI countdownText;    
 
     // Start is called before the first frame update
     void Start()
     {
         isGameRunning = true;
+
+        timeAmount = 300.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateCountdown();
+
+        if (timeAmount <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    private void UpdateCountdown()
+    {
+        if (isGameRunning)
+        {
+            timeAmount -= Time.deltaTime;
+
+            int minutes = Mathf.FloorToInt(timeAmount / 60);
+            int seconds = Mathf.FloorToInt(timeAmount % 60);
+
+            countdownText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+        else
+        {
+            countdownText.gameObject.SetActive(false);
+        }
     }
 
     public void GameOver()
