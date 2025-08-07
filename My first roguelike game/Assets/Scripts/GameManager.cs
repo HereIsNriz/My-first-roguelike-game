@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public bool isGameRunning;
     public float timeAmount;
+    public int enemyDeathCount;
 
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject statsPanel;

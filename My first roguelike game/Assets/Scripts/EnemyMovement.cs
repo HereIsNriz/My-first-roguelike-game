@@ -15,6 +15,7 @@ public class EnemyMovement : MonoBehaviour
     private GameManager gameManager;
     private Rigidbody2D rb;
     private GameObject player;
+    private EnemySpawn enemySpawner;
     private int currentLives;
 
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class EnemyMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        enemySpawner = GameObject.Find("Enemy Spawner").GetComponent<EnemySpawn>();
 
         enemyHealthBar.maxValue = maxLives;
         enemyHealthBar.value = currentLives;
@@ -37,9 +39,10 @@ public class EnemyMovement : MonoBehaviour
         if (currentLives <= 0)
         {
             Destroy(gameObject);
+            gameManager.enemyDeathCount++;
         }
 
-        if (!gameManager.isGameRunning)
+        if (!gameManager.isGameRunning || enemySpawner.bossTurn)
         {
             Destroy(gameObject);
         }
