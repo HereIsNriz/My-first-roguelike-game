@@ -7,7 +7,7 @@ public class BossController : MonoBehaviour
 {
     public bool bossDead;
 
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Slider bossHealthBar;
     [SerializeField] private GameObject player;
     [SerializeField] private GameManager gameManager;
