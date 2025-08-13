@@ -5,18 +5,21 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
     public GameObject[] enemy;
-    // Boss
     public bool bossTurn;
 
+    [SerializeField] private GameObject boss;
+    [SerializeField] private GameObject bossSpawnPosition;
     private GameManager gameManager;
     private float xySpawnLocation = 50.0f;
     private float spawnDelay = 2.0f;
     private float enemySpawnRate;
+    private bool bossSpawned;
 
     // Start is called before the first frame update
     void Start()
     {
         bossTurn = false;
+        bossSpawned = false;
 
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         // Randomly spawn enemy
@@ -27,6 +30,8 @@ public class EnemySpawn : MonoBehaviour
     void Update()
     {
         UpdateEnemySpawnRate();
+
+        SpawnTheBoss();
     }
 
     private void UpdateEnemySpawnRate()
@@ -73,9 +78,10 @@ public class EnemySpawn : MonoBehaviour
     
     private void SpawnTheBoss()
     {
-        if (bossTurn)
+        if (bossTurn && !bossSpawned)
         {
-            // Instantiate Boss
+            Instantiate(boss, bossSpawnPosition.transform.position, Quaternion.identity);
+            bossSpawned = true;
         }
     }
 }

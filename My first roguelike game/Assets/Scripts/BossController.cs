@@ -26,6 +26,7 @@ public class BossController : MonoBehaviour
 
         bossHealthBar.maxValue = maxLives;
         bossHealthBar.value = currentLives;
+        bossHealthBar.gameObject.SetActive(true);
         bossHealthBar.fillRect.gameObject.SetActive(true);
     }
 
@@ -34,6 +35,7 @@ public class BossController : MonoBehaviour
     {
         if (currentLives <= 0)
         {
+            bossHealthBar.gameObject.SetActive(false);
             Destroy(gameObject);
             bossDead = true;
             gameManager.enemyDeathCount++;
@@ -62,7 +64,10 @@ public class BossController : MonoBehaviour
     {
         BulletController bullet = collision.gameObject.GetComponent<BulletController>();
 
-        currentLives -= bullet.damage;
-        bossHealthBar.value = currentLives;
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            currentLives -= bullet.damage;
+            bossHealthBar.value = currentLives;
+        }
     }
 }
