@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BossController : MonoBehaviour
 {
     public bool bossDead;
+    public int damage;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Slider bossHealthBar;
@@ -13,7 +14,6 @@ public class BossController : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private float speed;
     [SerializeField] private float rotateSpeed;
-    [SerializeField] private int damage;
     [SerializeField] private int maxLives; 
     private int currentLives;
 

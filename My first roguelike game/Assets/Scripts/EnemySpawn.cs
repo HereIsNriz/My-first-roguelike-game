@@ -8,7 +8,6 @@ public class EnemySpawn : MonoBehaviour
     public bool bossTurn;
 
     [SerializeField] private GameObject boss;
-    [SerializeField] private GameObject bossSpawnPosition;
     private GameManager gameManager;
     private float xySpawnLocation = 50.0f;
     private float spawnDelay = 2.0f;
@@ -36,13 +35,9 @@ public class EnemySpawn : MonoBehaviour
 
     private void UpdateEnemySpawnRate()
     {
-        if (gameManager.timeAmount < 30)
+        if (gameManager.timeAmount < 60)
         {
             bossTurn = true;
-        }
-        else if (gameManager.timeAmount < 60)
-        {
-            enemySpawnRate = 0.5f;
         }
         else if (gameManager.timeAmount < 120)
         {
@@ -80,7 +75,7 @@ public class EnemySpawn : MonoBehaviour
     {
         if (bossTurn && !bossSpawned)
         {
-            Instantiate(boss, bossSpawnPosition.transform.position, Quaternion.identity);
+            boss.gameObject.SetActive(true);
             bossSpawned = true;
         }
     }

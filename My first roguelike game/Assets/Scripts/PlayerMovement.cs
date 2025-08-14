@@ -63,10 +63,20 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         EnemyMovement enemy = collision.gameObject.GetComponent<EnemyMovement>();
+        BossController boss = collision.gameObject.GetComponent<BossController>();
 
         if (collision.gameObject.CompareTag("Enemy") && notDamaged)
         {
             currentLives -= enemy.damage;
+            playerHealthBar.value = currentLives;
+
+            notDamaged = false;
+            StartCoroutine(livesCountdownRoutine());
+        }
+
+        if (collision.gameObject.CompareTag("Boss") && notDamaged)
+        {
+            currentLives -= boss.damage;
             playerHealthBar.value = currentLives;
 
             notDamaged = false;
