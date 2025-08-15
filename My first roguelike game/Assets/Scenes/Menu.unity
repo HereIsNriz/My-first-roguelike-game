@@ -1147,7 +1147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5 More Minutes
+  m_text: 5 Minutes Left
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0f9da461f5fc8f448858e48a111a608b, type: 2}
   m_sharedMaterial: {fileID: -5580375290129257311, guid: 0f9da461f5fc8f448858e48a111a608b, type: 2}
