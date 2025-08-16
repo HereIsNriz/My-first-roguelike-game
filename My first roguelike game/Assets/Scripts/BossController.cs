@@ -44,6 +44,7 @@ public class BossController : MonoBehaviour
         if (!gameManager.isGameRunning)
         {
             Destroy(gameObject);
+            bossHealthBar.gameObject.SetActive(false);
         }
     }
 

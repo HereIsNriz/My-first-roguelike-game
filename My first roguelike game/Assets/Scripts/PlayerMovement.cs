@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
         if (currentLives <= 0)
         {
             currentLives = 0;
-            speed = 0;
             rb.velocity = Vector3.zero;
             gameManager.GameOver();
             playerHealthBar.gameObject.SetActive(false);
@@ -57,6 +56,11 @@ public class PlayerMovement : MonoBehaviour
         if (gameManager.isGameRunning)
         {
             MovePlayer();
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+            playerHealthBar.gameObject.SetActive(false);
         }
     }
 

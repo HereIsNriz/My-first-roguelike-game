@@ -12,11 +12,13 @@ public class GameManager : MonoBehaviour
     public int enemyDeathCount;
 
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject gameWinPanel;
     [SerializeField] private GameObject statsPanel;
     [SerializeField] private TextMeshProUGUI enemyKilledText;
     // playTimeText
     // scoreText
-    [SerializeField] private TextMeshProUGUI countdownText;    
+    [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private BossController boss;
 
     // Start is called before the first frame update
     void Start()
@@ -31,9 +33,9 @@ public class GameManager : MonoBehaviour
     {
         UpdateCountdown();
 
-        if (timeAmount <= 0)
+        if (timeAmount <= 0 || boss.bossDead)
         {
-            // GameWin();
+            GameWin();
         }
     }
 
@@ -58,6 +60,12 @@ public class GameManager : MonoBehaviour
     {
         isGameRunning = false;
         gameOverPanel.gameObject.SetActive(true);
+    }
+
+    public void GameWin()
+    {
+        isGameRunning = false;
+        gameWinPanel.gameObject.SetActive(true);
     }
 
     public void NextButton()
