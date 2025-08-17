@@ -10,13 +10,15 @@ public class GameManager : MonoBehaviour
     public bool isGameRunning;
     public float timeAmount;
     public int enemyDeathCount;
+    public int score;
 
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameWinPanel;
     [SerializeField] private GameObject statsPanel;
+    [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI enemyKilledText;
-    // playTimeText
-    // scoreText
+    //[SerializeField] private TextMeshProUGUI levelReachedText;
+    //[SerializeField] private TextMeshProUGUI timeTakenText;
     [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private BossController boss;
 
@@ -56,6 +58,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void UpdateScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+    }
+
     public void GameOver()
     {
         isGameRunning = false;
@@ -71,6 +78,12 @@ public class GameManager : MonoBehaviour
     public void NextButton()
     {
         gameOverPanel.gameObject.SetActive(false);
+        gameWinPanel.gameObject.SetActive(false);
+
+        scoreText.text = $"Score: {score}";
+        enemyKilledText.text = $"Enemy Killed: {enemyDeathCount}";
+        // level
+        // time
         statsPanel.gameObject.SetActive(true);
     }
 

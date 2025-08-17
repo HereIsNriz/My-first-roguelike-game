@@ -16,6 +16,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private float rotateSpeed;
     [SerializeField] private int maxLives; 
     private int currentLives;
+    private int bossScore = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class BossController : MonoBehaviour
             Destroy(gameObject);
             bossDead = true;
             gameManager.enemyDeathCount++;
+            gameManager.UpdateScore(bossScore);
         }
 
         if (!gameManager.isGameRunning)

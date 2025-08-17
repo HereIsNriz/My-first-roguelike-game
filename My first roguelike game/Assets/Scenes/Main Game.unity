@@ -303,9 +303,11 @@ MonoBehaviour:
   isGameRunning: 0
   timeAmount: 0
   enemyDeathCount: 0
+  score: 0
   gameOverPanel: {fileID: 1280304557}
   gameWinPanel: {fileID: 780724808}
   statsPanel: {fileID: 1404038931}
+  scoreText: {fileID: 12918627}
   enemyKilledText: {fileID: 405508787}
   countdownText: {fileID: 813412014}
   boss: {fileID: 2106882641}

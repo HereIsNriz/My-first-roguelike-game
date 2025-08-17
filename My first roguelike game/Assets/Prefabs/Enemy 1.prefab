@@ -104,6 +104,7 @@ MonoBehaviour:
   rotateSpeed: 1000
   damage: 2
   maxLives: 2
+  enemyScore: 20
   enemyHealthBar: {fileID: 6394418544396649742}
 --- !u!60 &6317874566288183216
 PolygonCollider2D:

@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     public float rotateSpeed;
     public int damage;
     public int maxLives;
+    public int enemyScore;
 
     [SerializeField] private Slider enemyHealthBar;
     private GameManager gameManager;
@@ -40,6 +41,7 @@ public class EnemyMovement : MonoBehaviour
         {
             Destroy(gameObject);
             gameManager.enemyDeathCount++;
+            gameManager.UpdateScore(enemyScore);
         }
 
         if (!gameManager.isGameRunning || enemySpawner.bossTurn)
