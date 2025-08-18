@@ -18,9 +18,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI enemyKilledText;
     //[SerializeField] private TextMeshProUGUI levelReachedText;
-    //[SerializeField] private TextMeshProUGUI timeTakenText;
+    [SerializeField] private TextMeshProUGUI timeLeftText;
     [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private BossController boss;
+
+    private int minutes;
+    private int seconds;
 
     // Start is called before the first frame update
     void Start()
@@ -33,12 +36,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateCountdown();
-
-        if (timeAmount <= 0 || boss.bossDead)
+        if (timeAmount < 1 || boss.bossDead)
         {
             GameWin();
         }
+
+        UpdateCountdown();
     }
 
     private void UpdateCountdown()
@@ -47,8 +50,8 @@ public class GameManager : MonoBehaviour
         {
             timeAmount -= Time.deltaTime;
 
-            int minutes = Mathf.FloorToInt(timeAmount / 60);
-            int seconds = Mathf.FloorToInt(timeAmount % 60);
+            minutes = Mathf.FloorToInt(timeAmount / 60);
+            seconds = Mathf.FloorToInt(timeAmount % 60);
 
             countdownText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
@@ -83,7 +86,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = $"Score: {score}";
         enemyKilledText.text = $"Enemy Killed: {enemyDeathCount}";
         // level
-        // time
+        timeLeftText.text = string.Format("Time Left: {0:00}:{1:00}", minutes, seconds);
         statsPanel.gameObject.SetActive(true);
     }
 
