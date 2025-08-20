@@ -13,6 +13,7 @@ public class EnemyMovement : MonoBehaviour
     public int enemyScore;
 
     [SerializeField] private Slider enemyHealthBar;
+    [SerializeField] private GameObject enemyXp;
     private GameManager gameManager;
     private Rigidbody2D rb;
     private GameObject player;
@@ -39,7 +40,9 @@ public class EnemyMovement : MonoBehaviour
     {
         if (currentLives <= 0)
         {
+            Instantiate(enemyXp, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 361)));
             Destroy(gameObject);
+
             gameManager.enemyDeathCount++;
             gameManager.UpdateScore(enemyScore);
         }

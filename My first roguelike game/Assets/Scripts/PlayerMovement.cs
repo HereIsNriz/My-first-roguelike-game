@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject bulletShoot;
 
     [SerializeField] private Slider playerHealthBar;
+    [SerializeField] private Slider playerXpBar;
     private GameManager gameManager;
     private Rigidbody2D rb;
     private float horizontalInput;
@@ -19,12 +20,17 @@ public class PlayerMovement : MonoBehaviour
     private float delayAfterDamaged = 3;
     private float playerRotation;
     private int currentLives;
+    private int maxXp;
+    private int currentXp;
+    private int xpExpanding = 50;
 
     // Start is called before the first frame update
     void Start()
     {
         notDamaged = true;
         currentLives = maxLives;
+        maxXp = 50;
+        currentXp = 0;
 
         rb = GetComponent<Rigidbody2D>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -32,6 +38,10 @@ public class PlayerMovement : MonoBehaviour
         playerHealthBar.maxValue = maxLives;
         playerHealthBar.value = currentLives;
         playerHealthBar.fillRect.gameObject.SetActive(true);
+
+        playerXpBar.maxValue = maxXp;
+        playerXpBar.value = currentXp;
+        playerXpBar.fillRect.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -48,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = Vector3.zero;
             gameManager.GameOver();
             playerHealthBar.gameObject.SetActive(false);
+            playerXpBar.gameObject.SetActive(false);
         }
     }
 
@@ -61,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             playerHealthBar.gameObject.SetActive(false);
+            playerXpBar.gameObject.SetActive(false);
         }
     }
 
@@ -85,6 +97,17 @@ public class PlayerMovement : MonoBehaviour
 
             notDamaged = false;
             StartCoroutine(livesCountdownRoutine());
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        XpController xp = collision.gameObject.GetComponent<XpController>();
+
+        if (collision.gameObject.CompareTag("XP"))
+        {
+            UpdateXp(xp.enemyXp);
+            Destroy(collision.gameObject);
         }
     }
 
@@ -119,6 +142,20 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Instantiate(bullet, bulletShoot.transform.position, transform.rotation);
+        }
+    }
+
+    private void UpdateXp(int xpToAdd)
+    {
+        currentXp += xpToAdd;
+        playerXpBar.value = currentXp;
+
+        if (currentXp >= maxXp)
+        {
+            currentXp = 0;
+            playerXpBar.value = currentXp;
+            maxXp += xpExpanding;
+            playerXpBar.maxValue = maxXp;
         }
     }
 }

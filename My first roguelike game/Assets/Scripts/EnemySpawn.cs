@@ -41,19 +41,19 @@ public class EnemySpawn : MonoBehaviour
         }
         else if (gameManager.timeAmount < 120)
         {
-            enemySpawnRate = 1;
+            enemySpawnRate = 0.5f;
         }
         else if (gameManager.timeAmount < 180)
         {
-            enemySpawnRate = 2;
+            enemySpawnRate = 1;
         }
         else if (gameManager.timeAmount < 240)
         {
-            enemySpawnRate = 3;
+            enemySpawnRate = 2;
         }
         else if (gameManager.timeAmount < 301)
         {
-            enemySpawnRate = 4;
+            enemySpawnRate = 3;
         }
     }
 

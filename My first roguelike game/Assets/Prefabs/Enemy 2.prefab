@@ -106,6 +106,7 @@ MonoBehaviour:
   maxLives: 1
   enemyScore: 10
   enemyHealthBar: {fileID: 3999339914381273465}
+  enemyXp: {fileID: 5567387935378750414, guid: 6124ac8628da5df468dabe72553a19ac, type: 3}
 --- !u!60 &7824750861579596409
 PolygonCollider2D:
   m_ObjectHideFlags: 0
