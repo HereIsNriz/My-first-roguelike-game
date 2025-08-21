@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameWinPanel;
     [SerializeField] private GameObject statsPanel;
+    [SerializeField] private GameObject upgradeSelectionPanel;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI enemyKilledText;
     [SerializeField] private TextMeshProUGUI levelReachedText;
@@ -59,6 +60,18 @@ public class GameManager : MonoBehaviour
         else
         {
             countdownText.gameObject.SetActive(false);
+        }
+    }
+
+    private void UpgradeSelection()
+    {
+        if (isGameRunning)
+        {
+            if (player.upgradeSelection)
+            {
+                upgradeSelectionPanel.gameObject.SetActive(true);
+                Time.timeScale = 0;
+            }
         }
     }
 

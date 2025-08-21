@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public int maxLives;
     public int playerLevel;
+    public bool upgradeSelection;
     public GameObject bullet;
     public GameObject bulletShoot;
 
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         maxXp = 50;
         currentXp = 0;
         playerLevel = 1;
+        upgradeSelection = false;
 
         rb = GetComponent<Rigidbody2D>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -167,6 +169,7 @@ public class PlayerMovement : MonoBehaviour
 
             playerLevel++;
             playerLevelText.text = $"Level: {playerLevel}";
+            upgradeSelection = true;
         }
     }
 }
