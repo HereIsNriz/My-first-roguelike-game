@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +9,13 @@ public class PlayerMovement : MonoBehaviour
     public bool notDamaged;
     public float speed;
     public int maxLives;
+    public int playerLevel;
     public GameObject bullet;
     public GameObject bulletShoot;
 
     [SerializeField] private Slider playerHealthBar;
     [SerializeField] private Slider playerXpBar;
+    [SerializeField] private TextMeshProUGUI playerLevelText;
     private GameManager gameManager;
     private Rigidbody2D rb;
     private float horizontalInput;
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         currentLives = maxLives;
         maxXp = 50;
         currentXp = 0;
+        playerLevel = 1;
 
         rb = GetComponent<Rigidbody2D>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -42,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
         playerXpBar.maxValue = maxXp;
         playerXpBar.value = currentXp;
         playerXpBar.fillRect.gameObject.SetActive(true);
+
+        playerLevelText.text = $"Level: {playerLevel}";
     }
 
     // Update is called once per frame
@@ -59,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
             gameManager.GameOver();
             playerHealthBar.gameObject.SetActive(false);
             playerXpBar.gameObject.SetActive(false);
+            playerLevelText.gameObject.SetActive(false);
         }
     }
 
@@ -73,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = Vector3.zero;
             playerHealthBar.gameObject.SetActive(false);
             playerXpBar.gameObject.SetActive(false);
+            playerLevelText.gameObject.SetActive(false);
         }
     }
 
@@ -156,6 +164,9 @@ public class PlayerMovement : MonoBehaviour
             playerXpBar.value = currentXp;
             maxXp += xpExpanding;
             playerXpBar.maxValue = maxXp;
+
+            playerLevel++;
+            playerLevelText.text = $"Level: {playerLevel}";
         }
     }
 }

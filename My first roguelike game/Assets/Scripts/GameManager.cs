@@ -17,10 +17,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject statsPanel;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI enemyKilledText;
-    //[SerializeField] private TextMeshProUGUI levelReachedText;
+    [SerializeField] private TextMeshProUGUI levelReachedText;
     [SerializeField] private TextMeshProUGUI timeLeftText;
     [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private BossController boss;
+    [SerializeField] private PlayerMovement player;
 
     private int minutes;
     private int seconds;
@@ -85,7 +86,7 @@ public class GameManager : MonoBehaviour
 
         scoreText.text = $"Score: {score}";
         enemyKilledText.text = $"Enemy Killed: {enemyDeathCount}";
-        // level
+        levelReachedText.text = $"Level Reached: {player.playerLevel}";
         timeLeftText.text = string.Format("Time Left: {0:00}:{1:00}", minutes, seconds);
         statsPanel.gameObject.SetActive(true);
     }
