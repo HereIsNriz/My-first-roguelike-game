@@ -103,7 +103,7 @@ MonoBehaviour:
   speed: 3
   rotateSpeed: 1000
   damage: 2
-  maxLives: 2
+  maxLives: 4
   enemyScore: 20
   enemyHealthBar: {fileID: 6394418544396649742}
   enemyXp: {fileID: 6888965079266247565, guid: 3bdac9cb9e61ad34bb34ef9f3b77c594, type: 3}

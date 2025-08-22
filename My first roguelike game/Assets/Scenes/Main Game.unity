@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notDamaged: 1
-  speed: 5
+  speed: 4
   maxLives: 10
   playerLevel: 0
   upgradeSelection: 0
@@ -5203,7 +5203,7 @@ MonoBehaviour:
   gameManager: {fileID: 37370758}
   speed: 4
   rotateSpeed: 1000
-  maxLives: 20
+  maxLives: 30
 --- !u!212 &2106882642
 SpriteRenderer:
   m_ObjectHideFlags: 0
