@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGameRunning: 0
-  timeAmount: 0
+  timeAmount: 601
   enemyDeathCount: 0
   score: 0
   gameOverPanel: {fileID: 1280304557}
@@ -5203,7 +5203,7 @@ MonoBehaviour:
   gameManager: {fileID: 37370758}
   speed: 4
   rotateSpeed: 1000
-  maxLives: 30
+  maxLives: 100
 --- !u!212 &2106882642
 SpriteRenderer:
   m_ObjectHideFlags: 0

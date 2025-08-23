@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private int currentLives;
     private int maxXp;
     private int currentXp;
-    private int xpExpanding = 50;
+    private int xpExpanding = 20;
 
     // Start is called before the first frame update
     void Start()

@@ -13,6 +13,7 @@ public class EnemySpawn : MonoBehaviour
     private float spawnDelay = 2.0f;
     private float enemySpawnRate;
     private bool bossSpawned;
+    private int enemyIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -35,25 +36,24 @@ public class EnemySpawn : MonoBehaviour
 
     private void UpdateEnemySpawnRate()
     {
-        if (gameManager.timeAmount < 60)
+        if (gameManager.timeAmount < 121)
         {
             bossTurn = true;
         }
-        else if (gameManager.timeAmount < 120)
-        {
-            enemySpawnRate = 0.5f;
-        }
-        else if (gameManager.timeAmount < 180)
-        {
-            enemySpawnRate = 1;
-        }
-        else if (gameManager.timeAmount < 240)
-        {
-            enemySpawnRate = 2;
-        }
         else if (gameManager.timeAmount < 301)
         {
+            enemySpawnRate = 1;
+            enemyIndex = Random.Range(0, enemy.Length);
+        }
+        else if (gameManager.timeAmount < 481)
+        {
+            enemySpawnRate = 2;
+            enemyIndex = Random.Range(0, enemy.Length - 1);
+        }
+        else if (gameManager.timeAmount < 601)
+        {
             enemySpawnRate = 3;
+            enemyIndex = Random.Range(0, enemy.Length - 2);
         }
     }
 
@@ -62,10 +62,9 @@ public class EnemySpawn : MonoBehaviour
         // Randomly spwan enemy from everywhere
         if (gameManager.isGameRunning && !bossTurn)
         {
-            int enemyIndex = Random.Range(0, enemy.Length);
             Vector2 enemySpawnLoc = new Vector2(Random.Range(-xySpawnLocation, xySpawnLocation), Random.Range(-xySpawnLocation, xySpawnLocation));
 
-            Instantiate(enemy[enemyIndex], enemySpawnLoc, enemy[enemyIndex].gameObject.transform.rotation);
+            Instantiate(enemy[enemyIndex], enemySpawnLoc, Quaternion.identity);
 
             Invoke("RandomEnemySpawnLocation", enemySpawnRate);
         }

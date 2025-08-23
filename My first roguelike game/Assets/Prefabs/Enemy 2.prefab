@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2305b47d09beb6c4b8cdf33491f0597e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 2
   rotateSpeed: 1000
   damage: 1
   maxLives: 2

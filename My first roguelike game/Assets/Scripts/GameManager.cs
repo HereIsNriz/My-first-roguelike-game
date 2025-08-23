@@ -31,8 +31,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isGameRunning = true;
-
-        timeAmount = 301.0f;
     }
 
     // Update is called once per frame

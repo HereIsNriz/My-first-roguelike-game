@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90feb056ea2444349bccbf27b538b702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyXp: 10
+  enemyXp: 30
 --- !u!60 &6968563734504555301
 PolygonCollider2D:
   m_ObjectHideFlags: 0
