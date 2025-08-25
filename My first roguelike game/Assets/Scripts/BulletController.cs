@@ -28,4 +28,9 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void BulletDamageButton()
+    {
+        damage++;
+    }
 }

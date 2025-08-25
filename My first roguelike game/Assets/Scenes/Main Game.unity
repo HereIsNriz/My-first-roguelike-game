@@ -4143,7 +4143,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1047642113}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5755744302320635722, guid: bf818c97a1489474a9b09cf3d68ef02c, type: 3}
+        m_TargetAssemblyTypeName: BulletController, Assembly-CSharp
+        m_MethodName: BulletDamageButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1047642113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4436,7 +4448,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1102394919}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 63581369}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: NumOfBullet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1102394919
 MonoBehaviour:
   m_ObjectHideFlags: 0

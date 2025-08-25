@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private float verticalInput;
     private float delayAfterDamaged = 3;
     private float playerRotation;
+    private int bulletToSpawn = 1;
     private int currentLives;
     private int maxXp;
     private int currentXp;
@@ -153,7 +154,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Instantiate(bullet, bulletShoot.transform.position, transform.rotation);
+            for (int i = 0; i < bulletToSpawn; i++)
+            {
+                Instantiate(bullet, bulletShoot.transform.position, transform.rotation);
+            }
         }
     }
 
@@ -201,5 +205,10 @@ public class PlayerMovement : MonoBehaviour
     public void FastButton()
     {
         speed++;
+    }
+
+    public void NumOfBullet()
+    {
+        bulletToSpawn++;
     }
 }
