@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private int maxXp;
     private int currentXp;
     private int xpExpanding = 20;
+    private int livesIncreased = 5;
+    private int maxLivesIncreased = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -171,5 +173,33 @@ public class PlayerMovement : MonoBehaviour
             playerLevelText.text = $"Level: {playerLevel}";
             upgradeSelection = true;
         }
+    }
+
+    public void HealthButton()
+    {
+        if (currentLives != maxLives)
+        {
+            for (int i = 0; i < livesIncreased; i++)
+            {
+                currentLives++;
+                playerHealthBar.value = currentLives;
+
+                if (currentLives == maxLives)
+                {
+                    break;
+                }
+            }
+        }
+    }
+
+    public void MaxHealthButton()
+    {
+        maxLives += maxLivesIncreased;
+        playerHealthBar.maxValue = maxLives;
+    }
+
+    public void FastButton()
+    {
+        speed++;
     }
 }
