@@ -11,11 +11,13 @@ public class GameManager : MonoBehaviour
     public float timeAmount;
     public int enemyDeathCount;
     public int score;
+    public bool buttonPressed;
 
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameWinPanel;
     [SerializeField] private GameObject statsPanel;
     [SerializeField] private GameObject upgradeSelectionPanel;
+    [SerializeField] private GameObject[] upgradeButtons;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI enemyKilledText;
     [SerializeField] private TextMeshProUGUI levelReachedText;
@@ -26,11 +28,24 @@ public class GameManager : MonoBehaviour
 
     private int minutes;
     private int seconds;
+    private int numOfButtonLocation = 3;
+    private float yButtonLocation = -100f;
+    private float xFirstButtonLocation = -500f;
+    private float xMiddleButtonLocation = 0f;
+    private float xLastButtonLocation = 500f;
+    private bool upgradeButtonAppeared;
+    private Vector2[] upgradeButtonLocation = new Vector2[3];
 
     // Start is called before the first frame update
     void Start()
     {
         isGameRunning = true;
+        buttonPressed = false;
+        upgradeButtonAppeared = false;
+
+        upgradeButtonLocation[0] = new Vector2(xFirstButtonLocation, yButtonLocation);
+        upgradeButtonLocation[1] = new Vector2(xMiddleButtonLocation, yButtonLocation);
+        upgradeButtonLocation[2] = new Vector2(xLastButtonLocation, yButtonLocation);
     }
 
     // Update is called once per frame
@@ -42,6 +57,7 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateCountdown();
+        UpgradeSelection();
     }
 
     private void UpdateCountdown()
@@ -69,6 +85,26 @@ public class GameManager : MonoBehaviour
             {
                 upgradeSelectionPanel.gameObject.SetActive(true);
                 Time.timeScale = 0;
+
+                if (!upgradeButtonAppeared)
+                {
+                    for (int i = 0; i < numOfButtonLocation; i++)
+                    {
+                        int buttonIndex = Random.Range(0, upgradeButtons.Length);
+
+                        Instantiate(upgradeButtons[buttonIndex], upgradeButtonLocation[i], Quaternion.identity);
+                    }
+                    upgradeButtonAppeared = true;
+                }
+
+                if (buttonPressed)
+                {
+                    upgradeSelectionPanel.gameObject.SetActive(false);
+                    Time.timeScale = 1;
+                    player.upgradeSelection = false;
+                    buttonPressed = false;
+                    upgradeButtonAppeared = false;
+                }
             }
         }
     }

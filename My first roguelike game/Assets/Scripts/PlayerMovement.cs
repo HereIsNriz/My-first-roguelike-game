@@ -194,21 +194,25 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+        gameManager.buttonPressed = true;
     }
 
     public void MaxHealthButton()
     {
         maxLives += maxLivesIncreased;
         playerHealthBar.maxValue = maxLives;
+        gameManager.buttonPressed = true;
     }
 
     public void FastButton()
     {
         speed++;
+        gameManager.buttonPressed = true;
     }
 
     public void NumOfBullet()
     {
         bulletToSpawn++;
+        gameManager.buttonPressed = true;
     }
 }

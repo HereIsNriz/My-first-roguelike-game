@@ -8,6 +8,7 @@ public class BulletController : MonoBehaviour
     public int damage;
 
     private Rigidbody2D bulletRb;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -32,5 +33,6 @@ public class BulletController : MonoBehaviour
     public void BulletDamageButton()
     {
         damage++;
+        gameManager.buttonPressed = true;
     }
 }
