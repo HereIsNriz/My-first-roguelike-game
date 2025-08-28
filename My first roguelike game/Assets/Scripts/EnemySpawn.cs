@@ -40,20 +40,25 @@ public class EnemySpawn : MonoBehaviour
         {
             bossTurn = true;
         }
-        else if (gameManager.timeAmount < 301)
+        else if (gameManager.timeAmount < 241)
         {
             enemySpawnRate = 1;
             enemyIndex = Random.Range(0, enemy.Length);
         }
-        else if (gameManager.timeAmount < 481)
+        else if (gameManager.timeAmount < 361)
         {
             enemySpawnRate = 2;
             enemyIndex = Random.Range(0, enemy.Length - 1);
         }
-        else if (gameManager.timeAmount < 601)
+        else if (gameManager.timeAmount < 481)
         {
             enemySpawnRate = 3;
             enemyIndex = Random.Range(0, enemy.Length - 2);
+        }
+        else if (gameManager.timeAmount < 601)
+        {
+            enemySpawnRate = 4;
+            enemyIndex = Random.Range(0, enemy.Length - 3);
         }
     }
 

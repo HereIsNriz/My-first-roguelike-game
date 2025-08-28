@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class EnemyBulletController : MonoBehaviour
 {
-    public float speed;
     public int damage;
+
+    [SerializeField] private int speed;
 
     private Rigidbody2D bulletRb;
     private GameManager gameManager;
@@ -13,27 +14,21 @@ public class BulletController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bulletRb = GetComponent<Rigidbody2D>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        bulletRb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         bulletRb.velocity = transform.up * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
         }
-    }
-
-    public void BulletDamageButton()
-    {
-        damage++;
-        gameManager.buttonPressed = true;
     }
 }
