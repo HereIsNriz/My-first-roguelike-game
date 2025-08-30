@@ -10,6 +10,7 @@ TagManager:
   - Obstacle
   - Boss
   - XP
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
