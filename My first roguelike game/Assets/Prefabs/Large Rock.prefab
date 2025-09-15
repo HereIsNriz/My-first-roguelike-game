@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6427646371510099619}
   - component: {fileID: 6103061098266233513}
   - component: {fileID: 139204165081550571}
-  - component: {fileID: 6544246048342936460}
   m_Layer: 0
   m_Name: Large Rock
   m_TagString: Obstacle
@@ -121,15 +120,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &6544246048342936460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171626667928972641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718e331d6626e1447be11dddb216925d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
